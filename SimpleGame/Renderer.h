@@ -14,38 +14,44 @@ public:
 	~Renderer();
 
 	bool IsInitialized();
-	void ReloadAllShaderPrograms();
 	void DrawSolidRect(float x, float y, float z, float size, float r, float g, float b, float a);
+
 	void DrawTest();
 	void DrawParticle();
-
+	void ReloadAllShaderPrograms();
 private:
 	void Initialize(int windowSizeX, int windowSizeY);
-	void DeleteAllShaderPrograms();
 	void CompileAllShaderPrograms();
-	bool ReadFile(char* filename, std::string *target);
+	void DeleteAllShaderPrograms();
+	bool ReadFile(char* filename, std::string* target);
 	void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType);
 	GLuint CompileShaders(char* filenameVS, char* filenameFS);
 	void CreateVertexBufferObjects();
-	void GetGLPosition(float x, float y, float *newX, float *newY);
-	void CreateParticles(int count);
+	void GetGLPosition(float x, float y, float* newX, float* newY);
+
+	void GeneralteParticles(int numParticle);
+
 
 	bool m_Initialized = false;
-	
+
 	unsigned int m_WindowSizeX = 0;
 	unsigned int m_WindowSizeY = 0;
 
 	GLuint m_VBORect = 0;
 	GLuint m_SolidRectShader = 0;
-	GLuint m_VBOTestPos = 0;
-	GLuint m_VBOTestColor = 0;
+
+	// letcture 3
+	GLuint m_VBOtestPos = 0;
+	GLuint m_VBOtestColor = 0;
 
 	GLuint m_TestShader = 0;
 
-	float m_Time = 0;
 
-	GLuint m_VBOParticles = 0;
-	GLuint m_VBOParticlesVertexCount = 0;
+	// Time
+	float m_time = 0;
+
+	//Particle
 	GLuint m_ParticleShader = 0;
+	GLuint m_VBOParticle = 0;
+	GLuint m_VBOParticleVertexCount = 0;
 };
-
